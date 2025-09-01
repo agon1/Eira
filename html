@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EIRAA – Tækni & Hönnun</title>
+  <link rel="stylesheet" href="eira.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="navbar">
+      <a href="#" class="logo">
+        <img src="Eira1.png" alt="EIRA Logo">
+        <span>EIRA</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">Um okkur</a></li>
+        <li><a href="#services">Þjónusta</a></li>
+        <li><a href="#portfolio">Okkar verk</a></li>
+        <li><a href="#contact">Hafa samband</a></li>
+      </ul>
+      <div class="burger">&#9776;</div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Við hönnum. Við sköpum.</h1>
+    <p> Merki • Vefur • Forrit • Meta business • Innanhúss Design • Utanhús Design</p>
+    <a href="#contact" class="btn">Hafðu samband</a>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section about">
+  <div class="container">
+    <h2>Um okkur</h2>
+    <p>
+      Við hjá <strong>EIRA</strong> sameinum tækni, hönnun og arkitektúr
+      til að skapa rými og merki sem heilla. Markmið okkar er einfalt:
+      að gera drauma þína að veruleika með nýsköpun, fagurfræði og virkni.
+    </p>
+  </div>
+</section>
+
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <div class="container">
+      <h2>Okkar Þjónustur</h2>
+      <div class="service-grid">
+        <div class="service-card">
+          <h3>Merki & Lógó</h3>
+          <p>Við hönnum einstakar og tímalausar lógó sem skera sig úr.</p>
+        </div>
+        <div class="service-card">
+          <h3>Vefur & Forrit</h3>
+          <p>Vefsíða og forrit sem eru hönnuð með nútíma tækni.</p>
+        </div>
+        <div class="service-card">
+          <h3>Markaðssetning</h3>
+          <p>Við hjálpum viðskiptavinum að komast í Meta Business (Auglýsingar á Instagram og Facebook).</p>
+        </div>
+        <div class="service-card">
+          <h3>Innanhúss & Utanhúss</h3>
+          <p>Hönnunarhugmyndir sem umbreyta rýmum í upplifanir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="portfolio">
+    <div class="container">
+      <h2>Okkar Verk</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">Verkefni 1
+          <img src="Projekt1.png" alt="Project 1">
+        <h4>Verkefni 1</h4>
+        </div>
+        <div class="portfolio-item">Verkefni 2
+          <img src="Projekt6.png" alt="Project 2">
+        <h4>Verkefni 2</h4>
+        </div>
+        <div class="portfolio-item">Verkefni 3
+          <img src="Projekt2.png" alt="Project 3">
+        <h4>Verkefni 3</h4>
+        </div>
+        <div class="portfolio-item">Verkefni 4
+          <img src="Projekt5.png" alt="Project 4">
+        <h4>Verkefni 4</h4>
+        </div>
+        <div class="portfolio-item">Verkefni 5
+          <img src="Projekt4.png" alt="Project 5">
+        <h4>Verkefni 5</h4>
+      </div>
+      <div class="portfolio-item">Verkefni 6
+          <img src="Projekt7.png" alt="Project 6">
+        <h4>Verkefni 6</h4>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+  <h2>Hafðu samband við okkur</h2>
+  <p>Áttu spurningu eða viltu vinna með okkur? Endilega fylltu út eyðublaðið hér að neðan.</p>
+  <form id="contact-form" action="https://formspree.io/f/mblarbwq" method="POST" class="contact-form">
+  <input type="text" name="name" placeholder="Nafn" required>
+  <input type="email" name="email" placeholder="Netfang" required>
+  <textarea name="message" placeholder="Skilaboð" required></textarea>
+  <button type="submit">Sendu</button>
+</form>
+
+<!-- Popup messages -->
+<div id="form-status" class="form-status"></div>
+
+  <script src="eira.js"></script>
+
+  <script>
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+
+  form.addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const data = new FormData(form);
+
+    try {
+      let response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        status.textContent = "✅ Skilaboð sent! Við munum hafa samband fljótlega.";
+        status.style.color = "#00c896";
+        form.reset();
+      } else {
+        status.textContent = "❌ Oops! Eitthvað fór úrskeiðis.";
+        status.style.color = "red";
+      }
+    } catch (error) {
+      status.textContent = "❌ Netkerfisvilla. Vinsamlegast reyndu aftur.";
+      status.style.color = "red";
+    }
+
+    status.style.display = "block";
+    setTimeout(() => {
+      status.style.display = "none";
+    }, 4000); // hide after 4s
+  });
+</script>
+</body>
+</html>
